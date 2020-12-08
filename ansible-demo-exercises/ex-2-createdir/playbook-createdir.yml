@@ -1,0 +1,19 @@
+-
+  name: Create a directory on target
+  hosts: target2
+  tasks:
+    - name: Create a directory named dir1
+      command: mkdir /home/ansiblecon/dir1 creates=/home/ansiblecon/dir1
+    
+    - name: Create a directory name dir2
+      command: mkdir /home/ansiblecon/dir2 creates=/home/ansiblecon/dir2
+
+    - name: Create a directory name dir3
+      command: mkdir /home/ansiblecon/dir3 creates=/home/ansiblecon/dir3
+
+    - name: Create a directory named dir4
+      file:
+        owner: ansiblecon
+        mode: 777
+        path: /home/ansiblecon/dir4
+        state: directory

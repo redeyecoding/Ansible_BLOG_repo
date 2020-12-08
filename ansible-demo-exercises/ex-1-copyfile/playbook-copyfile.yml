@@ -1,0 +1,9 @@
+-
+  name: Copying files to targets
+  hosts: all
+  tasks:
+    - name: Copying file to targets
+      copy:
+        src: ./test-file1.txt
+        dest: /home/ansiblecon/test-file1.txt23
+        

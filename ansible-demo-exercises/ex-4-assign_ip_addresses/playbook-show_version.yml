@@ -1,0 +1,14 @@
+---
+
+-
+  name: Show the version of router
+  hosts: routers
+  connection: '{{ ansible_connection }}'
+  gather_facts: false
+  tasks:
+    - name: Execute show version
+      ios_command:
+        commands: show version
+      register: my_output
+    
+    - debug: var=my_output.stdout

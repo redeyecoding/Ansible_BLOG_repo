@@ -1,0 +1,31 @@
+---
+
+- name: Assign Ip addresses to routers
+  hosts: routers
+  gather_facts: false
+  vars_files:
+    - ./R1_CONFIGURATION_VARIABLES.yml
+  vars:
+    - v1: 'jeffrey'
+  
+  tasks:
+    - name: Assign IP address to loopback interface 1
+      ios_config:
+        lines:
+          - interface loopback1
+          - ip address {{ ip_address }} {{ subnet_mask }}
+            
+    - name: Get output from previous configuration 
+      ios_command: 
+        commands: sho ip interface bri
+      register: output
+
+    - name: Get the Hostname of the device
+      ios_command:
+        commands: show run 
+      
+      register: hostname
+    
+    - name: Print output only if ip address 192.168.0.185 is in output
+      debug: var=hostname.stdout
+

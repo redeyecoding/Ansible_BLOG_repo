@@ -1,0 +1,17 @@
+---
+
+-
+  name: Print out items from an array
+  hosts: localhost
+  vars:
+    fruits:
+      - apple
+      - banana
+      - peach
+      - blueberries
+      - pineapples
+  tasks:
+    -
+      name: print out items in array
+      command: "echo \"This is fruit:{{ item }}\""
+      loop: '{{ fruits }}'

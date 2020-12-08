@@ -1,0 +1,11 @@
+-
+  name: Replace the octets in ip address file
+  hosts: target2
+  tasks:
+    - name: Replace the third octet.
+      replace:
+        path: /home/ansiblecon/ip_addresses.txt
+        regexp: '^192\.168\.0'
+        replace: '192.168.120'
+        backup: yes
+        

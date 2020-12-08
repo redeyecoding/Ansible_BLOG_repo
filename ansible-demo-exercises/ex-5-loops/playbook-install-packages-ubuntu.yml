@@ -1,0 +1,21 @@
+---
+
+-
+    name: Install some packages
+    hosts: target1
+    vars:
+      packages:
+        - python
+        - apache2
+        - nginx
+        - mysql-server
+        - python3-apt
+        - nodejs
+
+    tasks:
+      -
+        name: Install packages
+        apt: name='{{ item }}' state=latest
+        with_items:
+          - '{{ packages }}'
+        when: ansible_os_family == 'Debian'
